@@ -12,9 +12,11 @@ class World{
   
   var _i = 0;
   
+  CpuFactory _cpufact = new CpuFactory();
+  
   World(){
-    Cpu.birth = birthLife;
-    Cpu.death = killLife;
+    _cpufact.birth = birthLife;
+    _cpufact.death = killLife;
   }
   
   /// puts a new [life] into the world
@@ -22,7 +24,7 @@ class World{
     if(life.cpu != null){
       throw "This life is allready alive";
     }
-    life.cpu = new Cpu(life);
+    life.cpu = _cpufact.getCpu(life);
     lifeforms.add(life);
     cpus.add(life.cpu);
   }
@@ -39,8 +41,8 @@ class World{
       return;
     }
     
-    life.cpu.newLife(null);
     cpus.remove(life.cpu);
+    _cpufact.releaseCpu(life.cpu);
     life.cpu = null;
     lifeforms.remove(life);
   }

@@ -8,6 +8,7 @@ import 'dart:math';
 import 'dart:typed_data';
 
 part 'src/cpu.dart';
+part 'src/cpu_factory.dart';
 part 'src/instruction.dart';
 part 'src/label.dart';
 part 'src/lifeform.dart';

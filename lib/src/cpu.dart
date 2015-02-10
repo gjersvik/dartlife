@@ -29,12 +29,7 @@ enum Op{
 }
 
 class Cpu {
-  static LifeCallback birth = (_){};
-  static LifeCallback death = (_){};
-  
-  static double mutation = 0.01;
-  static Random rand = new Random();
-  
+  //public
   static const regA = 0;
   static const regB = 1;
   static const regC = 2;
@@ -43,12 +38,19 @@ class Cpu {
   static const write = 5;
   static const flow = 6;
   
-  Lifeform _life;
+  Lifeform life;
   Uint32List r = new Uint32List(7);
   Uint8ClampedList c;
   Stack<int> stack0 = new Stack();
   Stack<int> stack1 = new Stack();
   
+  //for factory
+  LifeCallback _birth = (_){};
+  LifeCallback _death = (_){};
+  double _mutation = 0.01;
+  Random _rand = new Random();
+  
+  //private
   Op current;
   int _x = 0;
   int _comp = 0;
@@ -57,23 +59,24 @@ class Cpu {
   Stack<int> _tempStack;
   List<int> _copyLable = [];
   
-  Cpu([Lifeform life]){
+  Cpu();
+  
+  //friend
+  _newLife(Lifeform lifeform){
+    life = lifeform;
     if(life != null){
-      newLife(life);
+      c = new Uint8ClampedList((life.dna.length * 2.5).truncate());
+      c.setRange(0, life.dna.length, life.dna);
     }
   }
   
-  newLife(Lifeform life){
-    _life = life;
-    if(_life != null){
-      r = new Uint32List(7);
-      c = new Uint8ClampedList((life.dna.length * 2.5).truncate());
-      for(var i = 0; i < life.dna.length; i += 1){
-        c[i] = life.dna[i];
-      }
-      stack0 = new Stack();
-      stack1 = new Stack();
-    }
+  //friend
+  _clear(){
+    life = null;
+    r.fillRange(0, r.length, 0);
+    c = null;
+    stack0.clear();
+    stack1.clear();
   }
   
   safeSet(reg,value){
@@ -181,7 +184,7 @@ class Cpu {
         }else{
           _copyLable.clear();
         }
-        if(rand.nextDouble() > mutation){
+        if(_rand.nextDouble() > _mutation){
           c[r[write]] = c[r[read]];
           safeSet(write, r[write]+1);
           safeSet(read, r[read]+1);
@@ -242,13 +245,13 @@ class Cpu {
       c[i] = 0;
     }
     
-    birth(new Lifeform(dna));
+    _birth(new Lifeform(dna));
   }
   _mutate(){
-    var d = rand.nextDouble();
+    var d = _rand.nextDouble();
     if(d < 0.5){
       // Mutate
-      c[r[write]] = rand.nextInt(Op.values.length);
+      c[r[write]] = _rand.nextInt(Op.values.length);
       safeSet(write, r[write]+1);
       safeSet(read, r[read]+1);
     }else if(d < 0.75){

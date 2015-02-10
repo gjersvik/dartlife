@@ -11,4 +11,6 @@ class Stack<T>{
     return _data.removeLast();
   }
   push(T value) =>_data.add(value);
+  
+  clear() => _data.clear();
 }
