@@ -274,7 +274,7 @@ class Cpu {
       r[flow] = r[ip];
     }else{
       r[regB] = to - r[ip] + 1;
-      r[flow] = to;
+      safeSet(flow, to);
     }
     r[regC] = label.length;
   }
