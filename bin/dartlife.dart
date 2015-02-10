@@ -25,29 +25,13 @@ main(){
     Op.nopB
   ];
   
-  Cpu.birth = runLife;
-  runLife(new Lifeform.fromOps(code));
-  
-  int i = 0;
-  int tps = 0;
-  Stopwatch sp = new Stopwatch()..start();
+  var world = new World();
+  world.birthLife(new Lifeform.fromOps(code));
   
   while(true){
-    if(i >= cpus.length){
-      i = 0;
-    }
-    cpus[i].tick();
-    i += 1;
-    tps += 1;
-    if(sp.elapsedMilliseconds >= 1000){
-      print("Ticks last second: $tps");
-      tps = 0;
-      sp.reset();
-    }
+    world.run(new Duration(milliseconds: 100));
+    print("Lifeforms: ${world.lifeforms.length}");
+    print("Ticks per secound: ${world.tps.toInt()}");
+    print("Tps minute avrage: ${world.tpsAvg.toInt()}");
   }
-}
-
-runLife(Lifeform life){
-  print('newLife: ${life.dna}');
-  cpus.add(new Cpu(life));
 }

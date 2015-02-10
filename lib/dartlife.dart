@@ -3,6 +3,7 @@
 
 library dartlife;
 
+import 'dart:collection';
 import 'dart:math';
 import 'dart:typed_data';
 
@@ -11,3 +12,4 @@ part 'src/instruction.dart';
 part 'src/label.dart';
 part 'src/lifeform.dart';
 part 'src/stack.dart';
+part 'src/world.dart';

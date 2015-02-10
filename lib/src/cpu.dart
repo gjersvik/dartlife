@@ -1,8 +1,6 @@
 part of dartlife;
 
 typedef void LifeCallback(Lifeform);
-typedef void CpuCallback(Cpu);
-
 enum Op{
   nopA,
   nopB,
@@ -32,7 +30,7 @@ enum Op{
 
 class Cpu {
   static LifeCallback birth = (_){};
-  static CpuCallback death = (_){};
+  static LifeCallback death = (_){};
   
   static double mutation = 0.01;
   static Random rand = new Random();
@@ -67,13 +65,15 @@ class Cpu {
   
   newLife(Lifeform life){
     _life = life;
-    r = new Uint32List(7);
-    c = new Uint8ClampedList((life.dna.length * 2.5).truncate());
-    for(var i = 0; i < life.dna.length; i += 1){
-      c[i] = life.dna[i];
+    if(_life != null){
+      r = new Uint32List(7);
+      c = new Uint8ClampedList((life.dna.length * 2.5).truncate());
+      for(var i = 0; i < life.dna.length; i += 1){
+        c[i] = life.dna[i];
+      }
+      stack0 = new Stack();
+      stack1 = new Stack();
     }
-    stack0 = new Stack();
-    stack1 = new Stack();
   }
   
   safeSet(reg,value){
