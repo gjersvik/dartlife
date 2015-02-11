@@ -39,7 +39,7 @@ class Cpu {
   static const flow = 6;
   
   Lifeform life;
-  Uint32List r = new Uint32List(7);
+  Uint32List r = new Uint32List(8);
   Uint8ClampedList c;
   Stack<int> stack0 = new Stack();
   Stack<int> stack1 = new Stack();
@@ -60,6 +60,45 @@ class Cpu {
   List<int> _copyLable = [];
   
   Cpu();
+  
+  int get reg1 => r[0];
+  set reg1(int n) => r[0] = n;
+  
+  int get reg2 => r[1];
+  set reg2(int n) => r[1] = n;
+  
+  int get reg3 => r[2];
+  set reg3(int n) => r[2] = n;
+  
+  int get reg4 => r[3];
+  set reg4(int n) => r[3] = n;
+
+  getHead(int i){
+    i += 4;
+    return r[i];
+  }
+  
+  setHead(int i, int v){
+    i += 4;
+    r[i] = v;
+    while(r[i] >= c.length){
+      r[i] -= c.length;
+    }
+  }
+  
+  int get ip => r[4];
+  set ip(int n) => setHead(0,n);
+  
+  int get read => r[5];
+  set read(int n) => setHead(1,n);
+  
+  int get write => r[6];
+  set write(int n) => setHead(2,n);
+  
+  int get flow => r[7];
+  set flow(int n) => setHead(3,n);
+    
+    
   
   //friend
   _newLife(Lifeform lifeform){

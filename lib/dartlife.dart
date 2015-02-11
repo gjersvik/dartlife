@@ -7,6 +7,7 @@ import 'dart:collection';
 import 'dart:math';
 import 'dart:typed_data';
 
+part 'src/compute_instructions.dart';
 part 'src/cpu.dart';
 part 'src/cpu_factory.dart';
 part 'src/instruction.dart';
