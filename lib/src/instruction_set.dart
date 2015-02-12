@@ -30,4 +30,8 @@ class InstructionSet {
     inst[b] = i;
     names[i.name] = i;
   }
+  
+  Instruction random(){
+    
+  }
 }

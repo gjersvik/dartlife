@@ -29,15 +29,6 @@ enum Op{
 }
 
 class Cpu {
-  //public
-  static const regA = 0;
-  static const regB = 1;
-  static const regC = 2;
-  static const ip = 3;
-  static const read = 4;
-  static const write = 5;
-  static const flow = 6;
-  
   Lifeform life;
   Uint32List r = new Uint32List(8);
   Uint8ClampedList c;
@@ -45,10 +36,11 @@ class Cpu {
   Stack<int> stack1 = new Stack();
   
   //for factory
-  LifeCallback _birth = (_){};
-  LifeCallback _death = (_){};
-  double _mutation = 0.01;
-  Random _rand = new Random();
+  LifeCallback birth = (_){};
+  LifeCallback death = (_){};
+  double mutation = 0.01;
+  Random rand = new Random();
+  InstructionSet iset;
   
   //private
   Op current;
@@ -56,8 +48,7 @@ class Cpu {
   int _comp = 0;
   bool _noop = false;
   int _temp = 0;
-  Stack<int> _tempStack;
-  List<int> _copyLable = [];
+  List<int> copyLable = [];
   
   Cpu();
   
