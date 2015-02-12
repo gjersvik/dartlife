@@ -1,12 +1,5 @@
 part of dartlife;
 
-enum Op{
-  hDivide,
-  hCopy,
-  hSearch,
-  ifLabel
-}
-
 addBioInstuction(InstructionSet set){
   set.add(new Divide());
   set.add(new Copy());
