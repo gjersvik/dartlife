@@ -1,32 +1,12 @@
 import 'package:dartlife/dartlife.dart';
 
-import 'dart:io';
-
-List<Cpu> cpus = [];
-
 main(){
-  var code = [
-    Op.hSearch,
-    Op.nopC,
-    Op.nopA,
-    Op.movHead,
-    Op.nopC,
-    Op.hSearch,
-    Op.hCopy,
-    Op.ifLabel,
-    Op.nopC,
-    Op.nopA,
-    Op.inc,
-    Op.nopC,
-    Op.jmpHead,
-    Op.movHead,
-    Op.hDivide,
-    Op.nopA,
-    Op.nopB
-  ];
+  var code = 'search:c:a mhead:c search copy iflabel:c:a inc:c jhead mhead devide a:b';
   
-  var world = new World();
-  world.birthLife(new Lifeform.fromOps(code));
+  var dartlife = new Dartlife();
+  
+  var world = dartlife.world;
+  world.birthLife(dartlife.lifeFromString(code));
   
   while(true){
     world.run(new Duration(milliseconds: 100));

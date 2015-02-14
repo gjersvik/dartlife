@@ -53,5 +53,22 @@ class Dartlife{
   releaseCpu(Cpu cpu){
     cpu._clear();
     _cache.add(cpu);
-  } 
+  }
+  
+  Lifeform lifeFromString(String code){
+    var names = code.split(' ').expand((s) => s.split(':')).map((String s){
+      if(s.length == 1){
+        s = 'mod' + s;
+      }
+      return s;
+    });
+    
+    var bytes = names.map((String name){
+      if(!iset.names.containsKey(name)){
+        throw "No istuction named :$name";
+      }
+      return iset.names[name].byte;
+    }).toList();
+    return new Lifeform(new Uint8ClampedList.fromList(bytes));
+  }
 }
