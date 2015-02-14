@@ -52,7 +52,7 @@ class IfLess extends Modefiable{
       comp = 0;
     }
     //skip text istuction if not less.
-    if(c.r[mod] >= r[comp]){
+    if(c.r[mod] >= c.r[comp]){
       c.ip += 1;
     }
   }

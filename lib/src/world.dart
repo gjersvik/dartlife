@@ -1,6 +1,8 @@
 part of dartlife;
 
 class World{
+  Dartlife _factory;
+  
   /// List of all [Lifeform]s in this world. Do not edit this list.
   List<Lifeform> lifeforms = [];
   
@@ -12,19 +14,15 @@ class World{
   
   var _i = 0;
   
-  CpuFactory _cpufact = new CpuFactory();
   
-  World(){
-    _cpufact.birth = birthLife;
-    _cpufact.death = killLife;
-  }
+  World(this._factory);
   
   /// puts a new [life] into the world
   birthLife(Lifeform life){
     if(life.cpu != null){
       throw "This life is allready alive";
     }
-    life.cpu = _cpufact.getCpu(life);
+    life.cpu = _factory.getCpu(life);
     lifeforms.add(life);
     cpus.add(life.cpu);
   }
@@ -42,7 +40,7 @@ class World{
     }
     
     cpus.remove(life.cpu);
-    _cpufact.releaseCpu(life.cpu);
+    _factory.releaseCpu(life.cpu);
     life.cpu = null;
     lifeforms.remove(life);
   }

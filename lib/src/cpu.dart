@@ -3,6 +3,8 @@ part of dartlife;
 typedef void LifeCallback(Lifeform);
 
 class Cpu {
+  Dartlife _factory;
+  
   Lifeform life;
   Uint32List r = new Uint32List(8);
   Uint8ClampedList c;
@@ -10,21 +12,17 @@ class Cpu {
   Stack<int> stack1 = new Stack();
   
   //for factory
-  LifeCallback birth = (_){};
-  LifeCallback death = (_){};
-  double mutation = 0.01;
-  Random rand = new Random();
-  InstructionSet iset;
+  LifeCallback birth;
+  LifeCallback death;
   
   //private
-  Op current;
-  int _x = 0;
-  int _comp = 0;
-  bool _noop = false;
-  int _temp = 0;
   List<int> copyLable = [];
   
-  Cpu();
+  Cpu(this._factory);
+  
+  Random get rand => _factory.rand;
+  double get mutation => _factory.mutation;
+  InstructionSet get iset => _factory.iset;
   
   int get reg1 => r[0];
   set reg1(int n) => r[0] = n;

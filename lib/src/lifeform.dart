@@ -9,10 +9,7 @@ class Lifeform{
    */
   Cpu cpu;
   
-  double energy = 100.0;
+  double energy = 1000.0;
   
   Lifeform(this.dna);
-  Lifeform.fromOps(Iterable<Op> ops){
-    dna = new Uint8ClampedList.fromList(ops.map((Op op) => op.index).toList());
-  }
 }
