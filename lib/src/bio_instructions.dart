@@ -8,7 +8,7 @@ addBioInstuction(InstructionSet set){
 }
 
 class Divide extends Runnable{
-  final int byte = 21;
+  final int byte = 22;
   final double cost = 1.0;
   final name = 'divide';
   
@@ -32,7 +32,7 @@ class Divide extends Runnable{
 }
 
 class Copy extends Runnable{
-  final int byte = 22;
+  final int byte = 23;
   final double cost = 1.0;
   final name = 'copy';
   
@@ -69,7 +69,7 @@ class Copy extends Runnable{
 }
 
 class Search extends Labelable{
-  final int byte = 23;
+  final int byte = 24;
   final double cost = 1.0;
   final name = 'search';
   
@@ -96,7 +96,7 @@ class Search extends Labelable{
 
 
 class IfLabel extends Labelable{
-  final int byte = 23;
+  final int byte = 25;
   final double cost = 1.0;
   final name = 'iflabel';
   

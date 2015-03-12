@@ -9,7 +9,7 @@ class Lifeform{
    */
   Cpu cpu;
   
-  double energy = 1000.0;
+  double energy = 10000000.0;
   
   Lifeform(this.dna);
 }

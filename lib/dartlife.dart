@@ -27,7 +27,7 @@ class Dartlife{
   List<Cpu> _cache = [];
   
   InstructionSet get iset{
-    if(_iset = null){
+    if(_iset == null){
       _iset = new InstructionSet();
       addComputeInstuction(_iset);
       addBioInstuction(_iset);
@@ -36,7 +36,7 @@ class Dartlife{
   }
   
   World get world{
-    if(_world = null){
+    if(_world == null){
       _world = new World(this);
     }
     return _world;
@@ -45,7 +45,7 @@ class Dartlife{
   Cpu getCpu(Lifeform life){
     var cpu = _cache.isEmpty ? new Cpu(this) : _cache.removeLast();
     cpu.birth = world.birthLife;
-    cpu.death = world.killLife(life);
+    cpu.death = world.killLife;
     cpu._newLife(life);
     return cpu;
   }

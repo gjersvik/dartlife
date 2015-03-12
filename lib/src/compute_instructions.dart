@@ -131,7 +131,7 @@ class Increment extends Modefiable{
 }
 
 class Decrement extends Modefiable{
-  final int byte = 13;
+  final int byte = 14;
   final double cost = 1.0;
   final name = 'dec';
   
@@ -139,7 +139,7 @@ class Decrement extends Modefiable{
 }
 
 class Add extends Modefiable{
-  final int byte = 14;
+  final int byte = 15;
   final double cost = 1.0;
   final name = 'add';
   
@@ -147,7 +147,7 @@ class Add extends Modefiable{
 }
 
 class Sub extends Modefiable{
-  final int byte = 15;
+  final int byte = 16;
   final double cost = 1.0;
   final name = 'sub';
   
@@ -155,7 +155,7 @@ class Sub extends Modefiable{
 }
 
 class NotAnd extends Modefiable{
-  final int byte = 16;
+  final int byte = 17;
   final double cost = 1.0;
   final name = 'nand';
   
@@ -163,7 +163,7 @@ class NotAnd extends Modefiable{
 }
 
 class MoveHead extends Modefiable{
-  final int byte = 17;
+  final int byte = 18;
   final double cost = 1.0;
   final name = 'mhead';
   
@@ -171,7 +171,7 @@ class MoveHead extends Modefiable{
 }
 
 class JumpHead extends Modefiable{
-  final int byte = 18;
+  final int byte = 19;
   final double cost = 1.0;
   final name = 'jhead';
   
@@ -179,7 +179,7 @@ class JumpHead extends Modefiable{
 }
 
 class GetHead extends Modefiable{
-  final int byte = 19;
+  final int byte = 20;
   final double cost = 1.0;
   final name = 'ghead';
   
@@ -187,7 +187,7 @@ class GetHead extends Modefiable{
 }
 
 class SetHead extends Modefiable{
-  final int byte = 20;
+  final int byte = 21;
   final double cost = 1.0;
   final name = 'shead';
   run(Cpu c, [int mod = 0]) => c.setHead(mod,c.reg4);
